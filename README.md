@@ -1,50 +1,78 @@
-# React + TypeScript + Vite
+# Calendar App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 1. 소개
 
-Currently, two official plugins are available:
+Calendar App은 사용자가 일정 관리 및 친구와의 캘린더 공유를 할 수 있는 웹 애플리케이션입니다. 주요 기능으로는 일정 CRUD, 로그인 기능, 친구 추가 및 일정 공유 기능이 포함되어 있습니다. 이 앱은 React와 TypeScript를 기반으로 개발되었으며, Vite로 빌드되고, Ant Design을 사용하여 UI를 구성합니다. 사용자는 로그인 후 친구를 추가하고, 친구들과 일정을 공유할 수 있습니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 주요 기능
 
-## Expanding the ESLint configuration
+- 회원가입, 로그인
+- 일정 관리 (CRUD)
+- 다른 회원과 친구를 맺는 기능 (친구 요청 보내기, 요청 수락, 요청 거절, 친구 삭제)
+- 친구인 다른 회원의 공개된 일정 열람 기능
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 2. 빌드 및 실행 방법
 
-- Configure the top-level `parserOptions` property like this:
+### 2.1. 필수 요구사항
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Node.js (최소 16.x 버전 이상)
+- npm 또는 yarn
+
+### 2.2. 설치 및 실행
+
+```sh
+# 저장소 클론
+git clone https://github.com/honggeunLee/calendar_frontend
+cd [프로젝트 경로] # 실제 경로
+
+# 패키지 설치
+npm install   # 또는 yarn install
+
+# 개발 서버 실행
+npm run dev   # 또는 yarn dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 2.3. 빌드
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```sh
+npm run build   # 또는 yarn build
 ```
+
+## 3. 주요 컴포넌트 설명
+
+### 3.1. Calendar.tsx
+
+**설명:** 캘린더 UI를 렌더링하는 컴포넌트입니다.
+
+**사용 이유:**
+
+- 사용자가 월별, 주별, 일별로 일정을 볼 수 있도록 다양한 뷰를 제공합니다.
+- moment.js와 같은 라이브러리를 활용하여 날짜를 다루고, 일정을 랜더링합니다.
+
+### 3.2. CreateSchedule.tsx, EditSchedule.tsx
+
+**설명:** 새로운 일정을 추가/수정하는 폼 컴포넌트입니다.
+
+**사용 이유:**
+
+- 사용자가 새로운 일정을 추가/수정할 수 있도록 입력 필드를 제공하고, 이를 처리하여 캘린더에 반영할 수 있게 합니다.
+- 필수 입력 사항(제목, 시간 등)을 검증하고, 사용자가 직관적으로 일정을 추가/수정할 수 있도록 도와줍니다.
+
+### 3.3. FriendList.tsx
+
+**설명:** 친구 목록을 표시하고 관리하는 컴포넌트입니다.
+
+**사용 이유:**
+
+- 사용자가 친구 목록을 보고 친구를 추가하거나 제거할 수 있도록 관리합니다.
+- 일정 공유 기능과 연동되어, 선택된 친구와 일정을 공유할 수 있게 도와줍니다.
+
+### 3.4. LoginForm.tsx
+
+**설명:** 로그인 폼을 렌더링하는 컴포넌트입니다.
+
+**사용 이유:**
+
+- 사용자가 이메일 및 비밀번호를 입력하여 로그인을 할 수 있도록 도와줍니다.
+- 입력값을 검증하고, 성공적인 로그인 후에는 메인 대시보드로 리디렉션합니다.
+
