@@ -30,6 +30,8 @@ npm install   # 또는 yarn install
 
 # 개발 서버 실행
 npm run dev   # 또는 yarn dev
+
+# http://localhost:5173/ 접속 가능
 ```
 
 ### 2.3. 빌드
